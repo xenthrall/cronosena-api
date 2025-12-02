@@ -17,6 +17,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Navigation\NavigationGroup; 
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -51,6 +52,29 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('gestion academica')
+                    ->icon('heroicon-o-calendar')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('programas')
+                    ->icon('heroicon-o-book-open')
+                    ->collapsed(), //contraible deshabilitado -> false
+                NavigationGroup::make()
+                    ->label('fichas')
+                    ->icon('heroicon-o-pencil'),
+                NavigationGroup::make()
+                    ->label('instructores')
+                    ->icon('heroicon-o-user-group')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('sistema')
+                    ->collapsed(),
+
+
+            ])
+
             ->authMiddleware([
                 Authenticate::class,
             ]);
